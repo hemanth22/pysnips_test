@@ -1,0 +1,43 @@
+version: 2.1
+
+executors:
+  default:
+    docker:
+      - image: quay.io/hemanth22/rockylinux9:9
+
+jobs:
+  build:
+    executor: default
+    steps:
+      - checkout
+      - run:
+          name: Print Python Verson
+          command: |
+            dnf install python312 python3-pip -y
+            python3 -V
+            python3 -m pip install requests
+            /usr/bin/python3.12 -V
+            /usr/bin/python3.12 -m ensurepip
+            /usr/bin/python3.12 -m pip install pip --upgrade
+            /usr/bin/python3.12 -m pip install -r requirements.txt
+      - run:
+          name: Produce Message and sent to kafka receiver
+          command: |
+            ls -ltr
+            /usr/bin/python3.12 telegram_group_snippet/tele_group.py
+      - run:
+          name: System date
+          command: |
+            date
+
+workflows:
+  notify_app:
+    jobs:
+      - build
+    triggers:
+      - schedule:
+          cron: "25 16 * * *"
+          filters:
+            branches:
+              only:
+                - main
