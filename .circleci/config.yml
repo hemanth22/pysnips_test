@@ -26,7 +26,7 @@ jobs:
             ls -ltr
             /usr/bin/python3.12 telegram_group_snippet/tele_group.py
             /usr/bin/python3.12 postgres_connect/postgres.py
-            /usr/bin/python3.12 mongodb_connect/mongodb_version.py
+            /usr/bin/python3.12 redisdb_connect/redis_version.py
       - run:
           name: System date
           command: |
