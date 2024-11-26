@@ -2,6 +2,7 @@ import psycopg2
 from datetime import datetime
 import os
 import requests
+import pytz
 
 postgres_hostname = os.environ.get('postgres_hostname')
 postgres_database = os.environ.get('postgres_database')
@@ -50,8 +51,9 @@ def fetch_message_for_date(date_str):
 # Usage example
 if __name__ == "__main__":
     # Specify the date in YYYY-MM-DD format
+    ist_timezone = pytz.timezone("Asia/Kolkata")
     # Create a datetime object
-    current_date = datetime.now()
+    current_date = datetime.now(ist_timezone)
     # Format it to YYYY-MM-DD
     formatted_date = current_date.strftime("%Y-%m-%d")
     print(f"Formatted Date: {formatted_date}")
