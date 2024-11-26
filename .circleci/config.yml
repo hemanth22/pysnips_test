@@ -39,7 +39,7 @@ workflows:
       - build
     triggers:
       - schedule:
-          cron: "36 18 * * *"
+          cron: "00 3,6,9,12 * * *"
           filters:
             branches:
               only:
