@@ -27,6 +27,7 @@ jobs:
             /usr/bin/python3.12 telegram_group_snippet/tele_group.py
             /usr/bin/python3.12 postgres_connect/postgres.py
             /usr/bin/python3.12 redisdb_connect/redis_version.py
+            /usr/bin/python3.12 postgres_select.py
       - run:
           name: System date
           command: |
@@ -38,7 +39,7 @@ workflows:
       - build
     triggers:
       - schedule:
-          cron: "31 17 * * *"
+          cron: "27 18 * * *"
           filters:
             branches:
               only:
