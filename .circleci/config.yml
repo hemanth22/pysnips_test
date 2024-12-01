@@ -21,7 +21,7 @@ jobs:
             /usr/bin/python3.12 -m pip install pip --upgrade
             /usr/bin/python3.12 -m pip install -r requirements.txt
       - run:
-          name: Produce Message and sent to kafka receiver
+          name: Read Remainders stored in the database and send remainders
           command: |
             ls -ltr
             /usr/bin/python3.12 telegram_group_snippet/tele_group.py
@@ -39,7 +39,7 @@ workflows:
       - build
     triggers:
       - schedule:
-          cron: "00 3,6,9,12 * * *"
+          cron: "00 3,6,9,12,14,16 * * *"
           filters:
             branches:
               only:
