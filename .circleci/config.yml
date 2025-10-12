@@ -20,6 +20,8 @@ jobs:
             /usr/bin/python3.12 -m ensurepip
             /usr/bin/python3.12 -m pip install pip --upgrade
             /usr/bin/python3.12 -m pip install -r requirements.txt
+          max_auto_reruns: 3
+          auto_rerun_delay: 10s
       - run:
           name: Read Remainders stored in the database and send remainders
           command: |
@@ -28,10 +30,14 @@ jobs:
             /usr/bin/python3.12 postgres_connect/postgres.py
             /usr/bin/python3.12 redisdb_connect/redis_version.py
             /usr/bin/python3.12 postgres_select.py
+          max_auto_reruns: 3
+          auto_rerun_delay: 10s
       - run:
           name: System date
           command: |
             date
+          max_auto_reruns: 3
+          auto_rerun_delay: 10s
 
 workflows:
   notify_app:
