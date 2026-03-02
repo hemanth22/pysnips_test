@@ -4,3 +4,4 @@ pymongo
 dnspython
 redis
 pytz
+pymongo[srv]==3.12
