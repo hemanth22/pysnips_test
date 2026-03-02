@@ -14,8 +14,6 @@ jobs:
           name: Print Python Verson
           command: |
             dnf install python312 python3-pip -y
-            dnf install ca-certificates openssl openssl-devel -y
-            update-ca-trust
             python3 -V
             python3 -m pip install requests
             /usr/bin/python3.12 -V
@@ -28,6 +26,7 @@ jobs:
           name: Read Remainders stored in the database and send remainders
           command: |
             ls -ltr
+            /usr/bin/python3.12 mongodb_connect/mongodb_version.py
             /usr/bin/python3.12 telegram_group_snippet/tele_group.py
             /usr/bin/python3.12 postgres_connect/postgres.py
             /usr/bin/python3.12 redisdb_connect/redis_version.py
@@ -44,7 +43,10 @@ jobs:
 workflows:
   notify_app:
     jobs:
-      - build:
+      - build
+    triggers:
+      - schedule:
+          cron: "30 0,3,6,9,12,14,16 * * *"
           filters:
             branches:
               only:
