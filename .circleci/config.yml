@@ -44,10 +44,10 @@ workflows:
   notify_app:
     jobs:
       - build:
-	      filters:
-		    branches:
-			  only:
-			    - main
+          filters:
+            branches:
+              only:
+                - main
     triggers:
       - schedule:
           cron: "30 0,3,6,9,12,14,16 * * *"
