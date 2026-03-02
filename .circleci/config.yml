@@ -14,6 +14,8 @@ jobs:
           name: Print Python Verson
           command: |
             dnf install python312 python3-pip -y
+            dnf install ca-certificates openssl openssl-devel -y
+            update-ca-trust
             python3 -V
             python3 -m pip install requests
             /usr/bin/python3.12 -V
