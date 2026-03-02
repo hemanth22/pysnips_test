@@ -48,10 +48,3 @@ workflows:
             branches:
               only:
                 - main
-    triggers:
-      - schedule:
-          cron: "30 0,3,6,9,12,14,16 * * *"
-          filters:
-            branches:
-              only:
-                - main
